@@ -5,7 +5,7 @@ $(document).ready(function() {
       $(`li#${e.target.id}`).css('text-decoration', 'line-through');
       $.ajax({
         "async": true,
-        "url": `http://localhost:3940/checkTodo/${e.target.id}`,
+        "url": `http://localhost:3000/checkTodo/${e.target.id}`,
         "method": "PUT",
         "data": { "checked": true }
       })
@@ -16,7 +16,7 @@ $(document).ready(function() {
       $(`li#${e.target.id}`).css('text-decoration', 'none');
       $.ajax({
         "async": true,
-        "url": `http://localhost:3940/checkTodo/${e.target.id}`,
+        "url": `http://localhost:3000/checkTodo/${e.target.id}`,
         "method": "PUT",
         "data": { "checked": false }
       })
