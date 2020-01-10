@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Unit 2 Assessment</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script defer src='/javascripts/index.js' /></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <%if (todos.length < 1) { %>
+    <h3>There are no To Dos yet!</h3>
+    
+  <% } else { %>
+    
+    <div id="todo-container">
+        <ul>
+          <% todos.forEach((todo, i) => { %>
+            <li id="<%= i %>" 
+              <%= todo.checked ? 'style=text-decoration:line-through' : 'style=text-decoration:none' %>
+              >
+              <input id="<%= i %>" type="checkbox" 
+              <%= todo.checked ? 'checked' : '' %> />
+              <%= todo.todo %>
+              <form class="delete-button" action="/deleteTodo/<%= i %>?_method=DELETE" method="POST" ><button>X</button></form>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+  <% } %>
+  <hr>
+    <form action="/addTodo" method="POST">
+      <input type="text" name="todo" placeholder="Enter To Do" required>
+      <button type="submit">Add</button>
+    </form>
   </body>
 </html>
